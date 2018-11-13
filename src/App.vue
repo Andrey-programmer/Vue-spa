@@ -43,7 +43,6 @@ export default {
   data () {
     return {
       drawer: false,
-      kiss: false,
       links: [
         {
           title: 'login', icon: 'lock', url: '/login'
