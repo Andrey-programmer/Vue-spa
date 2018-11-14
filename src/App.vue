@@ -20,7 +20,7 @@
     <v-toolbar app dark color="primary">
       <v-toolbar-side-icon @click="drawer = !drawer" class="hidden-md-and-up"></v-toolbar-side-icon>
     <v-toolbar-title>
-      <router-link to="/" tag="span">Single Page Application</router-link>
+      <router-link to="/" tag="span" class="pointer">Single Page Application</router-link>
     </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down" >
@@ -66,3 +66,10 @@ export default {
   }
 }
 </script>
+
+
+<style scoped>
+    .pointer {
+      cursor: pointer;
+    }
+</style>
