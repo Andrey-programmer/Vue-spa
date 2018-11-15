@@ -79,7 +79,7 @@ export default {
                     id: '1234'
                 },
                 {
-                    title: 'Third ad', 
+                    title: 'Third ad',
                     description: 'I\'m description', 
                     promo: true, 
                     imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg', 
