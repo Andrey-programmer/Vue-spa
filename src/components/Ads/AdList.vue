@@ -1,9 +1,34 @@
 <template>
     <v-container grid-list-xs>
-        <v-layout row wrap>
-            <v-flex xs12>
-                <h1>AdList</h1>
-            </v-flex>
+        <v-layout row wrap class='flex-center'>
+            <v-flex xs12 sm6 offset-sm3>
+                <h1 class="text--secondary mb-3">My ads</h1> 
+                <v-card
+                    class="elevation-10 mb-5" v-for="ad of ads" :key="ad.id">
+                    <v-layout row>
+                        <v-flex xs4>                     
+                            <!-- <img :src="ad.imageSrc" alt=""> -->
+
+                            <!-- <div class="card-image" :style="   {backgroundImage:ad.imageSrc}" height="150"></div> -->
+                            <v-img
+                                :src="ad.imageSrc"
+                                height="200"
+                                width="200">
+                            </v-img>
+                        </v-flex>                  
+                        <v-flex xs8>
+                            <v-card-text>
+                                <h2 class="text--primary">{{ad.title}}</h2>
+                                <p>{{ad.description}}</p>
+                            </v-card-text>
+                            <v-card-actions class="actions">
+                                <v-spacer></v-spacer>
+                                <v-btn class="info" :to="'/ad/' +  ad.id">Open</v-btn>
+                            </v-card-actions>
+                        </v-flex> 
+                    </v-layout>
+                </v-card>
+            </v-flex>    
         </v-layout>
     </v-container>
 </template>
@@ -13,8 +38,32 @@
 export default {
     data () {
         return {
+            ads: [
+                {
+                    title: 'First ad', 
+                    description: 'I\'m description', 
+                    promo: false, 
+                    imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg', 
+                    id: '123'
+                },
+                 {
+                    title: 'Second ad', 
+                    description: 'I\'m description', 
+                    promo: true, 
+                    imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg', 
+                    id: '1234'
+                }
+            ]
         }
     }
 }
 </script>
+
+<style scoped>
+    .card-image {
+    }
+    .actions{
+        margin: auto;
+    }
+</style>
 

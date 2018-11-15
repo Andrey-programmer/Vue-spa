@@ -68,8 +68,11 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
     .pointer {
       cursor: pointer;
+    }
+     .flex-center {       
+        justify-content: center
     }
 </style>

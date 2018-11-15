@@ -80,8 +80,4 @@ export default {
 }
 </script>
 
-<style scoped>
-    .flex-center {       
-        justify-content: center
-    }
-</style>
+
