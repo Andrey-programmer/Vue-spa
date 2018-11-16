@@ -80,6 +80,7 @@ export default {
                     imageSrc: 'https://d2jq2hx2dbkw6t.cloudfront.net/46/maxresdefault.jpg'
                 }
                 this.$store.dispatch('createAd', ad)
+                this.$router.push('/')
             }
         }
     },
