@@ -31,7 +31,12 @@
                 </v-layout>
                 <v-layout row>
                     <v-flex xs12>
-                             <img src="https://cdn.vuetifyjs.com/images/carousel/bird.jpg" height="150">
+                             <v-img
+                             :src='createAd.imageSrc'
+                             height="300"
+                             width="300"
+                             >
+                            </v-img> 
                     </v-flex>
                 </v-layout>
                 <v-layout row>
@@ -71,9 +76,10 @@ export default {
                 const ad = {
                     title: this.title,
                     description: this.description,
-                    promo: this.promo
+                    promo: this.promo,
+                    imageSrc: 'https://d2jq2hx2dbkw6t.cloudfront.net/46/maxresdefault.jpg'
                 }
-                console.log(ad);
+                this.$store.dispatch('createAd', ad)
             }
         }
     },

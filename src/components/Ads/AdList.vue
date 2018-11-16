@@ -4,7 +4,7 @@
             <v-flex xs12 sm6 offset-sm3>
                 <h1 class="text--secondary mb-3">My ads</h1> 
                 <v-card
-                    class="elevation-10 mb-5" v-for="ad of ads" :key="ad.id">
+                    class="elevation-10 mb-5" v-for="ad of myAds" :key="ad.id">
                     <v-layout row>
                         <v-flex xs4>                     
                             <!-- <img :src="ad.imageSrc" alt=""> -->
@@ -36,24 +36,9 @@
 <script>
 /* eslint-disable */
 export default {
-    data () {
-        return {
-            ads: [
-                {
-                    title: 'First ad', 
-                    description: 'I\'m description', 
-                    promo: false, 
-                    imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg', 
-                    id: '123'
-                },
-                 {
-                    title: 'Second ad', 
-                    description: 'I\'m description', 
-                    promo: true, 
-                    imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg', 
-                    id: '1234'
-                }
-            ]
+    computed: {
+        myAds () {
+            return this.$store.getters.myAds
         }
     }
 }
