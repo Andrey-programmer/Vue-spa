@@ -3,7 +3,7 @@ import Vue from 'vue'
 import App from './App'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
-import * as firebase from 'firebase'
+import firebase from 'firebase'
 
 import router from './router/router'
 import store from './store/base'
