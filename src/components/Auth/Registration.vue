@@ -81,6 +81,7 @@ export default {
                     email: this.email,
                     password: this.password
                 }
+                this.$store.dispatch('registrUser', user)
                 //  this.valid = true
                  console.log(user)
             }
