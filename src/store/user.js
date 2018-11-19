@@ -1,5 +1,7 @@
 /* eslint-disable */
-import * as firebase from 'firebase'
+import  firebase from 'firebase/app'
+
+
 
 class User {
     constructor(id) {
@@ -56,11 +58,21 @@ export default {
                 commit('setError', error.message)
                 throw error
             }
+        },
+        autoLoginUser({commit}, data) {
+            commit('setUser', data)
+        },
+        logoutUser({commit}) {
+            firebase.auth().signOut()
+            commit('setUser', null)        
         }
     },
     getters: {
         user (state) {
             return this.user
+        },
+        isUserLoggedIn (state) {
+            return state.user !== null
         }
     }
     

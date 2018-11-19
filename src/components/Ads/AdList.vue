@@ -44,9 +44,7 @@ export default {
 }
 </script>
 
-<style scoped>
-    .card-image {
-    }
+<style scoped>  
     .actions{
         margin: auto;
     }

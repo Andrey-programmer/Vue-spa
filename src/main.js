@@ -6,7 +6,7 @@ import 'vuetify/dist/vuetify.min.css'
 import * as firebase from 'firebase'
 
 import router from './router/router'
-import store from './store/base'
+import store from './store/store'
 
 Vue.use(Vuetify)
 
@@ -29,5 +29,10 @@ new Vue({
       messagingSenderId: '314937424136'
     }
       firebase.initializeApp(config)
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          this.$store.dispatch('autoLoginUser', user)
+        }
+      })
   }
 })
