@@ -69,7 +69,7 @@ export default {
     },
     getters: {
         user (state) {
-            return this.user
+            return state.user
         },
         isUserLoggedIn (state) {
             return state.user !== null
