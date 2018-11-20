@@ -14,41 +14,15 @@ class Ad {
 
 export default {
     state: {
-        ads: [
-            {
-                title: 'First ad', 
-                description: 'I\'m description', 
-                promo: false, 
-                imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg', 
-                id: '123'
-            },
-            {
-                title: 'Second ad', 
-                description: 'I\'m description', 
-                promo: true, 
-                imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg', 
-                id: '1234'
-            },
-            {
-                title: 'Third ad',
-                description: 'I\'m description', 
-                promo: true, 
-                imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg', 
-                id: '12345'
-            }, 
-            {
-                title: 'Fourth ad', 
-                description: 'I\'m description', 
-                promo: false, 
-                imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg', 
-                id: '1237'
-            }
-
+        ads: [           
         ]
     },
     mutations: {
         createAd(state, payload) {
             state.ads.push(payload)
+        },
+        loadAds(state, data) {
+            state.ads = data
         }
     },
     actions: {
@@ -78,6 +52,42 @@ export default {
                     id: ad.key
                 } )
                 console.log('==========', newAd)
+            } catch (error) {
+                commit('setError', error.message)
+                commit('setLoading', false)
+                throw error
+            }
+        },
+        async getDatabaseAds({commit}) {
+            commit('clearError')
+            commit('setLoading', true)
+
+            const resultAds = []
+
+            try {
+                const fbVal = await firebase.database().ref('ads').once('value')
+                console.log(fbVal)
+
+                // для получения базы данных в читаемом виде вызываем у firebase метод val()
+                const ads = fbVal.val()
+                console.log(ads)
+
+                Object.keys(ads).forEach(key => {
+                    const ad = ads[key]
+                    resultAds.push(
+                        new Ad(
+                            ad.title,
+                            ad.description,
+                            ad.ownerId,
+                            ad.imageSrc,
+                            ad.promo,
+                            key
+                        )
+                    )
+                })
+
+                commit('loadAds', resultAds)
+                commit('setLoading', false)
             } catch (error) {
                 commit('setError', error.message)
                 commit('setLoading', false)
