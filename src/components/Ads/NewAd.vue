@@ -92,7 +92,7 @@ export default {
                     title: this.title,
                     description: this.description,
                     promo: this.promo,
-                    imageSrc: 'https://d2jq2hx2dbkw6t.cloudfront.net/46/maxresdefault.jpg'
+                    image: this.image
                 }
                 this.$store.dispatch('createAd', ad).
                 then(() => {
@@ -116,6 +116,7 @@ export default {
             }
             reader.readAsDataURL(file)
             this.image = file
+            // console.log(this.image)
         }
     },
     computed: {
