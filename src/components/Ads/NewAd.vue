@@ -22,19 +22,27 @@
                 <v-layout row class="mb-3">
                     <v-flex xs-12>
                         <v-btn
-                            class="warning mt-3"                           
+                            class="warning mt-3"  
+                            @click="triggerUpload"                         
                         >
                             Upload
-                            <v-icon right dark>cloud_upload</v-icon>              
-                        </v-btn>                   
+                            <v-icon right dark>cloud_upload</v-icon>        
+                        </v-btn>
+                        <input ref="fileInput" 
+                            type="file"
+                            style="display: none;" 
+                            accept="image/*"
+                            @change="onFileChange"
+                        >                   
                     </v-flex>     
                 </v-layout>
                 <v-layout row>
                     <v-flex xs12>
                              <v-img
-                             :src='createAd.imageSrc'
+                             :src='imageSrc'
                              height="300"
                              width="300"
+                             v-if="imageSrc"
                              >
                             </v-img> 
                     </v-flex>
@@ -55,7 +63,7 @@
                       class="success" 
                       @click="createAd"
                       :loading="loading" 
-                      :disabled="!valid || loading"
+                      :disabled="!valid || !image || loading "
                       >Create ad</v-btn>
                     </v-flex>
                 </v-layout>
@@ -72,12 +80,14 @@ export default {
             title: '',
             description: '',
             promo: false,
-            valid: false
+            valid: false,
+            image: null,
+            imageSrc: ''
         }
     },
     methods: {
         createAd() {
-            if (this.$refs.form.validate()) {
+            if (this.$refs.form.validate() && this.image) {
                 const ad = {
                     title: this.title,
                     description: this.description,
@@ -93,6 +103,19 @@ export default {
                 })
                 
             }
+        },
+        triggerUpload () {
+            this.$refs.fileInput.click()
+        },
+        // Работа с загрузкой файла
+        onFileChange (event) {
+            const file = event.target.files[0]
+            const reader = new FileReader()
+            reader.onload = event => {
+                this.imageSrc = reader.result
+            }
+            reader.readAsDataURL(file)
+            this.image = file
         }
     },
     computed: {
