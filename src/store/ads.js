@@ -1,4 +1,17 @@
 /* eslint-disable */
+import * as firebase from 'firebase'
+
+class Ad {
+    constructor(title, description, ownerId, imageSrc='', promo = false, id = null){
+        this.title = title,
+        this.description = description,
+        this.ownerId = ownerId,
+        this.imageSrc = imageSrc,
+        this.promo = promo,
+        this.id = id
+    }
+}
+
 export default {
     state: {
         ads: [
@@ -39,9 +52,37 @@ export default {
         }
     },
     actions: {
-        createAd ({commit}, data) {
-            data.id = 'eyeyeye'
-            commit('createAd', data)
+        //Можем передавать все геттеры вместе с коммитом в экшены
+        async createAd ({commit, getters}, data) {
+            // id в firebase идёт как uid
+            // console.log(getters.user.uid)
+            commit('clearError')
+            commit('setLoading', true)
+            console.log(getters.user) 
+
+            try {
+                const newAd = new Ad(
+                    data.title,
+                    data.description, 
+                    getters.user.id,
+                    data.imageSrc,
+                    data.promo)
+                //В параметре ref('Название пункта базы данных')
+                const ad = await firebase.database().ref('ads').push(newAd)
+
+                commit('setLoading', false)
+
+                // добавляем id в созданного объявления из firebase
+                commit('createAd', {
+                    ...newAd,
+                    id: ad.key
+                } )
+                console.log('==========', newAd)
+            } catch (error) {
+                commit('setError', error.message)
+                commit('setLoading', false)
+                throw error
+            }
         }
     },
     getters: {

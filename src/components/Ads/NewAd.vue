@@ -51,7 +51,12 @@
                 <v-layout row>
                     <v-flex xs12>
                       <v-spacer></v-spacer>
-                      <v-btn class="success" @click="createAd" :disabled="!valid">Create ad</v-btn>
+                      <v-btn 
+                      class="success" 
+                      @click="createAd"
+                      :loading="loading" 
+                      :disabled="!valid || loading"
+                      >Create ad</v-btn>
                     </v-flex>
                 </v-layout>
             </v-flex>  
@@ -79,11 +84,22 @@ export default {
                     promo: this.promo,
                     imageSrc: 'https://d2jq2hx2dbkw6t.cloudfront.net/46/maxresdefault.jpg'
                 }
-                this.$store.dispatch('createAd', ad)
-                this.$router.push('/')
+                this.$store.dispatch('createAd', ad).
+                then(() => {
+                    this.$router.push('/list')
+                })
+                .catch(() => {
+                    
+                })
+                
             }
         }
     },
+    computed: {
+        loading() {
+            return this.$store.getters.loading
+        }
+    }
 }
 </script>
 

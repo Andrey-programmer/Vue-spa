@@ -50,9 +50,10 @@ export default {
             commit('setLoading', true)
 
             try{
-                const user = await firebase.auth().signInWithEmailAndPassword(email, password)
-                commit('setUser', new User(user.uid))
+                const Data = await firebase.auth().signInWithEmailAndPassword(email, password)
+                commit('setUser', new User(Data.user.uid))
                 commit('setLoading', false)
+                console.log(Data.user.uid)
             } catch (error) {
                 commit('setLoading', false),
                 commit('setError', error.message)
@@ -60,7 +61,7 @@ export default {
             }
         },
         autoLoginUser({commit}, data) {
-            commit('setUser', data)
+            commit('setUser', new User(data.uid))
         },
         logoutUser({commit}) {
             firebase.auth().signOut()
