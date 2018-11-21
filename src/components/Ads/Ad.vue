@@ -14,7 +14,7 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <app-edit-ad-modal :ad="myAd"></app-edit-ad-modal>
+                        <app-edit-ad-modal :ad="myAd" v-if="logginedUser"></app-edit-ad-modal>
                         <v-btn class="success">Buy</v-btn>
                     </v-card-actions>
                 </v-card>
@@ -44,6 +44,9 @@ export default {
         },
         loading () {
             return this.$store.getters.loading
+        },
+        logginedUser () {           
+            return this.myAd.ownerId === this.$store.getters.user.id
         }
     },
     components: {
