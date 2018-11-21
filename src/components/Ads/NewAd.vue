@@ -12,7 +12,7 @@
                         v-model="title">
                   </v-text-field>              
                     <v-textarea
-                        name="Description"
+                        name="description"
                         label="Ad description"                       
                         hint="Заполните это поле"
                         v-model="description"
