@@ -23,6 +23,15 @@ export default {
         },
         loadAds(state, data) {
             state.ads = data
+        },
+        updateAd(state, {title, description, id}) {
+            const ad = state.ads.find(item => {
+                return item.id === id
+            })
+
+            ad.title = title
+            ad.description = description
+            
         }
     },
     actions: {
@@ -115,6 +124,25 @@ export default {
                 commit('setLoading', false)
                 throw error
             }
+        },
+        async updateAd ({commit}, {title, description, id}) {
+            commit('clearError')
+            commit('setLoading', true)
+            try {
+                //Перезаписываем данные в базе данных
+                await firebase.database().ref('ads').child(id).update({title, description})
+
+                commit('updateAd', {
+                    title, description, id
+                })
+                commit('setLoading', false)
+            } catch (error) {
+                commit('setError', error.message)
+                commit('setLoading', false)
+                throw error
+            }
+
+            
         }
     },
     getters: {
