@@ -1,4 +1,3 @@
-
 import Vue from 'vue'
 import App from './App'
 import Vuetify from 'vuetify'
@@ -7,8 +6,10 @@ import * as firebase from 'firebase'
 
 import router from './router/router'
 import store from './store/store'
+import BuyModalComponent from './components/shared/BuyModal.vue'
 
 Vue.use(Vuetify)
+Vue.component('app-buy-modal', BuyModalComponent)
 
 Vue.config.productionTip = false
 
@@ -17,7 +18,9 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  components: { 
+    App
+    },
   template: '<App/>',
   created () {
     var config = {

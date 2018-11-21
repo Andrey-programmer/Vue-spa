@@ -15,7 +15,7 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <app-edit-ad-modal :ad="myAd" v-if="logginedUser"></app-edit-ad-modal>
-                        <v-btn class="success">Buy</v-btn>
+                        <app-buy-modal :ad="myAd"></app-buy-modal>
                     </v-card-actions>
                 </v-card>
                 <div v-else class="text-xs-center">
