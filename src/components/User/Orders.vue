@@ -62,12 +62,12 @@ export default {
             ]
         } 
     }, */
-    computed: {
-        loading () {
-            return this.$store.getters.loading
-        },
+    computed: {    
         orders () {
             return this.$store.getters.orders
+        },
+        loading () {
+            return this.$store.getters.loading
         }
     },
     methods: {
@@ -77,9 +77,8 @@ export default {
                 order.done = true
             })
             .catch(() => {
-
+                
             })
-            
         }
     },
     created () {

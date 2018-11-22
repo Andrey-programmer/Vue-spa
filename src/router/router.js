@@ -24,6 +24,7 @@ export default new Router({
       name: 'ad',
       props: true,
       component: Ad
+      // beforeEnter: AuthGuard
     },
     {
       path: '/list',
