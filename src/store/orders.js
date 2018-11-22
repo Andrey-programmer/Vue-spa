@@ -62,12 +62,13 @@ export default {
             }
         },
 
-        async markOrderDone ({commit, getters}, dataId) {
+        async markOrderDone ({commit, getters}, order) {
             commit('clearError')
 
+            order.done = !order.done
             try {
-                await firebase.database().ref(`/users/${getters.user.id}/orders`).child(dataId).update({
-                    done: true
+                await firebase.database().ref(`/users/${getters.user.id}/orders`).child(order.id).update({
+                    done: order.done
                 })
 
 

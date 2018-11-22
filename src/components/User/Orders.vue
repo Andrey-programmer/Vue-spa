@@ -72,9 +72,9 @@ export default {
     },
     methods: {
         markDone (order) {
-            this.$store.dispatch('markOrderDone', order.id)
+            this.$store.dispatch('markOrderDone', order)
             .then(() => {
-                order.done = true
+                // order.done = !order.done
             })
             .catch(() => {
                 
