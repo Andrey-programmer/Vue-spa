@@ -59,13 +59,12 @@ export default {
                 console.log(imageExt)
 
                 // Обращаемся к хранилищу и создаём адрес из ключа и расширения картинки
-                const fileData = await firebase.storage().ref(`ads/${ad.key}${imageExt}`).put(image)
+                await firebase.storage().ref(`ads/${ad.key}${imageExt}`).put(image)
 
                 //Второй запрос тоже асинхронный поэтому код похожий но придётся писать               
 
                 //Получаем Url картинки из firebase
-                const imageSrc = await firebase.storage().ref(`ads/${ad.key}${imageExt}`).getDownloadURL()
-                // console.log(fileData)
+                const imageSrc = await firebase.storage().ref(`ads/${ad.key}${imageExt}`).getDownloadURL()                
                 // console.log(imageSrc)
 
 

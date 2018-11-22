@@ -1,10 +1,19 @@
 <template>
     <v-container grid-list-xs>
-        <v-layout row wrap > 
+        <v-layout row wrap>
+            <v-flex xs12 class="text-xs-center pt-5" v-if="loading">
+                <v-progress-circular
+                    :size="100"
+                    :width="10"
+                    color="purple"
+                    indeterminate
+                ></v-progress-circular>
+            </v-flex>
             <v-flex
              xs12
              sm6
-             offset-sm3>    
+             offset-sm3
+             v-else-if="!loading && orders.length !== 0">    
              <h1 class="text--secondery mb-3 pl-3">Orders</h1>
 
                 <v-list class="two-line subheader">
@@ -30,6 +39,9 @@
                     </v-list-tile>
                 </v-list>
             </v-flex>
+            <v-flex xs12 class="text-xs-center pt-5" v-else>
+                <h1 class="text--secondary">You have not orders</h1>
+            </v-flex>
         </v-layout>
     </v-container>
 </template>
@@ -37,7 +49,7 @@
 <script>
 /* eslint-disable */
 export default {
-    data () {
+  /*   data () {
         return {
             orders: [
                 {
@@ -48,13 +60,31 @@ export default {
                     down: false
                 }
             ]
+        } 
+    }, */
+    computed: {
+        loading () {
+            return this.$store.getters.loading
+        },
+        orders () {
+            return this.$store.getters.orders
         }
     },
     methods: {
         markDone (order) {
-            order.down = true
+            this.$store.dispatch('markOrderDone', order.id)
+            .then(() => {
+                order.done = true
+            })
+            .catch(() => {
+                
+            })
+            
         }
     },
+    created () {
+         this.$store.dispatch('getOrders')
+    }
 }
 </script>
 
