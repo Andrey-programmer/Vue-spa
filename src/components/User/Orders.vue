@@ -88,3 +88,11 @@ export default {
 }
 </script>
 
+
+<style lang="scss" scoped>
+    $color: #FFD;
+    .two-line {
+        background-color: $color;
+    }
+</style>
+
