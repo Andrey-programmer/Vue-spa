@@ -8,7 +8,13 @@ import router from './router/router'
 import store from './store/store'
 import BuyModalComponent from './components/shared/BuyModal.vue'
 
-Vue.use(Vuetify)
+import colors from 'vuetify/es5/util/colors'
+
+Vue.use(Vuetify, {
+  theme: {
+    primary: colors.teal.darken3
+  }
+})
 Vue.component('app-buy-modal', BuyModalComponent)
 
 Vue.config.productionTip = false

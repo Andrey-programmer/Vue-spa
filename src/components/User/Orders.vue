@@ -77,13 +77,13 @@ export default {
                 order.done = true
             })
             .catch(() => {
-                
+
             })
             
         }
     },
     created () {
-         this.$store.dispatch('getOrders')
+         this.$store.dispatch('getOrders') 
     }
 }
 </script>
