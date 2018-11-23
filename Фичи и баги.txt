@@ -1,0 +1,93 @@
+1) При установке vue-cli с гитхаба необходимо выбрать ветку master
+		или  просто 
+		$ npm install -g vue-cli
+2) создание проекта 
+		$ vue init webpack <Имя проекта>
+		$ npm i 
+
+
+/////////////////// ВАЖНО ///////////////////
+
+Обьявлять все констанции и функции выше объявления приложений
+/////////////////////////////////////////////
+
+3) Для валидации форм используется дополнение vuelidate - скачивать отдельно!
+	npm i -S vuelidate
+
+4) Для реализации роутинга используем Vue Router
+	https://router.vuejs.org/
+	npm i -S vue-router
+ 
+5) Для работы с сервером дополнение vue-resource
+	npm i -S vue-resource
+	(Для работы только на локальной машине npm i -D json-server)
+
+6) Для создания сервисов используем дополнение vuex
+	npm i -S vuex 
+
+7) Для работы с animate.css
+	$ npm i -S animate.css
+  Для анимации при появлении элемента добавляем атрибут - appear
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+1) Для реального проекта лучше использовать фреймворк Vuetify
+	https://vuetifyjs.com/ru/
+	После установки основного клиента: npm install -g vue-cli
+	устанавливаеМ фреймворк как: 
+	npm install @vue/cli -g
+	npm install -g @vue/cli-init
+
+2) Создаём проект
+	npm install -g @vue/cli-init
+	vue init vuetifyjs/webpack <name_project>
+3) Есть странная конструкция
+	adById (state) {
+            return id => { // тут id получаем в функцию, но при этом не обозначаем её в параметрах рядом с state
+                return state.ads.find(data => {
+                    return data.id === id
+                })
+            }
+        }
+
+4) если используем базу на firebase то в проект инсталлируем этот функционал
+	npm i -S firebase
+
+5) Для работы с асинхронными данными используем связку async - await
+	async - говорит что данные будут поступать асинхроннно
+        await - прекращает выполнение кода пока асинхронная функция не завершится
+
+5) Для использования препроцессоров необходима локальная загрузка лоадеров. пример с SCSS
+
+	npm install sass-loader node-sass sass --save-dev
+
+6) Для сборки проекта: 
+			npm run build
+
+
+
+
+
+
+7) Для использования hosting firebase:
+	1.  npm install -g firebase-tools
+	2.  firebase login     -> Y -> andrey.programmer.1302@gmail.com
+	3.  firebase init   -> Y -> Hosting (для выбора нажать клавишу пробел при выделенном хостинге) ->
+			    ->  выбираем проект который хотим поставить на хостинг и нажимаем Enter ->
+			    -> Прописываем папку dist -> Y (single-page app) -> N
+	4. firebase deploy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
