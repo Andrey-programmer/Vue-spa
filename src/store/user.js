@@ -52,12 +52,13 @@ export default {
             try{
                 const Data = await firebase.auth().signInWithEmailAndPassword(email, password)
 
+                
                 localStorage.setItem('spa-user', Data.user.uid)
-                console.log('user.js', localStorage.getItem('spa-user'))
+                // console.log('user.js', localStorage.getItem('spa-user'))
                 
                 commit('setUser', new User(Data.user.uid))
                 commit('setLoading', false)
-                console.log(Data.user.uid)
+                // console.log(Data.user.uid)
             } catch (error) {
                 commit('setLoading', false),
                 commit('setError', error.message)
@@ -69,7 +70,8 @@ export default {
         },
         logoutUser({commit}) {
             firebase.auth().signOut()
-            commit('setUser', null)        
+            localStorage.clear()
+            commit('setUser', null)     
         }
     },
     getters: {
