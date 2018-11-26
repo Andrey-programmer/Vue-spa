@@ -51,6 +51,9 @@ export default {
 
             try{
                 const Data = await firebase.auth().signInWithEmailAndPassword(email, password)
+
+                localStorage.setItem('spa-user', Data.user.uid)
+                
                 commit('setUser', new User(Data.user.uid))
                 commit('setLoading', false)
                 console.log(Data.user.uid)
