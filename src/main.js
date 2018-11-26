@@ -43,8 +43,8 @@ new Vue({
           this.$store.dispatch('autoLoginUser', user)
         }
       }) */
-      // this.$store.dispatch('autoLoginUser', localStorage.getItem('spa-user'))
-      localStorage.getItem('spa-user')
+      this.$store.dispatch('autoLoginUser', localStorage.getItem('spa-user'))
+      // localStorage.getItem('spa-user')
       // console.log('==========', localStorage.getItem('spa-user'))
 
       this.$store.dispatch('getDatabaseAds')

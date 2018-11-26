@@ -11,7 +11,7 @@ class User {
 
 export default {
     state: {
-        user: null
+        user: localStorage.getItem('spa-user') || null
     }, 
     mutations: {
         setUser (state, payload) {
