@@ -45,7 +45,7 @@ new Vue({
       }) */
       // this.$store.dispatch('autoLoginUser', localStorage.getItem('spa-user'))
       localStorage.getItem('spa-user')
-      // console.log('==========', JSON.stringify(localStorage.getItem('spa-user')))
+      // console.log('==========', localStorage.getItem('spa-user'))
 
       this.$store.dispatch('getDatabaseAds')
   }

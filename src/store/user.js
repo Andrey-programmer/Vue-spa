@@ -52,7 +52,8 @@ export default {
             try{
                 const Data = await firebase.auth().signInWithEmailAndPassword(email, password)
 
-                localStorage.setItem('spa-user', Data.user)
+                localStorage.setItem('spa-user', Data.user.uid)
+                console.log('user.js', localStorage.getItem('spa-user'))
                 
                 commit('setUser', new User(Data.user.uid))
                 commit('setLoading', false)
@@ -63,8 +64,8 @@ export default {
                 throw error
             }
         },
-        autoLoginUser({commit}, data) {
-            commit('setUser', new User(data.uid))
+        autoLoginUser({commit}, userId) {
+            commit('setUser', new User(userId))
         },
         logoutUser({commit}) {
             firebase.auth().signOut()
