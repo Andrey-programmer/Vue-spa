@@ -45,8 +45,10 @@ export default {
         loading () {
             return this.$store.getters.loading
         },
-        logginedUser () {           
+        logginedUser () {  
+            if(this.$store.getters.user)         
             return this.myAd.ownerId === this.$store.getters.user.id
+            else return false
         }
     },
     components: {
