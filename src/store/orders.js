@@ -45,7 +45,7 @@ export default {
                 const fbValue = await firebase.database().ref(`/users/${getters.user.id}/orders`).once('value')
 
                 //Преобразуем данный в читаемый вид
-                const orders = fbValue.val()
+                const orders = fbValue.val() || {}
 
                 // достаём все ключи внутри данных и закидываем их в массив 
                 Object.keys(orders).forEach(key => {
