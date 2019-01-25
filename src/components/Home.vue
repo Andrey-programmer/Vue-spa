@@ -23,9 +23,11 @@
                     xs12
                     sm6
                     md3
-                    v-for="(ad, index) of ads" :key="ad.id" 
+                    v-for="(ad) of ads" :key="ad.id"
                     >
                      <v-card>
+                         <div class="headline center">{{ad.title}}</div>
+                         <!-- <hr /> -->
                         <v-img
                         class="white--text"
                         height="200px"
@@ -34,16 +36,17 @@
                         <v-container fill-height fluid>
                             <v-layout fill-height>
                             <v-flex xs12 align-end flexbox>
-                                <span class="headline">{{ad.title}}</span>
+                                
                             </v-flex>
                             </v-layout>
                         </v-container>
                         </v-img>
                         <v-card-title>
-                        <div>
-                            <span class="grey--text">{{index + 1}}</span><br>
-                            <span>{{ad.description}}</span>
-                        </div>
+                            <div class="description-wrapper">
+                                <!-- <span class="grey--text">{{index + 1}}</span><br> -->
+                                <hr>
+                                <p class="description">{{ad.description}}</p>
+                            </div>
                         </v-card-title>
                         <v-card-actions>
                             <v-spacer></v-spacer>
@@ -98,5 +101,15 @@ export default {
         padding: 5px 15px;
         border-top-right-radius: 5px;
         border-top-left-radius: 5px;        
+    }
+    .center {
+        text-align: center;
+        padding-top: 15px;
+    }
+    .description-wrapper {
+        width: 100%
+    }
+    .description {
+        margin-top: 10px;
     }
 </style>

@@ -50,3 +50,4 @@ new Vue({
       this.$store.dispatch('getDatabaseAds')
   }
 })
+

@@ -11,7 +11,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "development": "0.0.6",
     "firebase": "^5.5.8",
+    "module": "^1.2.5",
+    "npm": "^6.7.0",
+    "readline": "^1.3.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuetify": "^1.0.0",
